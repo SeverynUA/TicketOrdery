@@ -63,7 +63,6 @@ public class EventServiceEntityTest_Impl extends CRUDService_Abstract<Event, Eve
 
         savedPlace = placeDAO.save(savedPlace);
         eventDAO.save(testEvent);
-
     }
 
     @Test

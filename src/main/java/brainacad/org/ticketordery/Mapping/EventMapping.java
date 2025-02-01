@@ -14,10 +14,17 @@ import java.util.stream.Collectors;
 @Mapper(componentModel = "spring")
 public interface EventMapping
 {
+    @Mapping(target = "place", source = "placeId", qualifiedByName = "placeFromId")
     Event toEntity(EventDTO dto);
 
-    default List<TicketPackDTO> mapTickets(List<Ticket> tickets)
-    {
+    @Mapping(target = "name", source = "entity.name")
+    @Mapping(target = "eventDate", source = "entity.eventDate") // Виправлено назву
+    @Mapping(target = "placeId", source = "entity.place.id") // Додаємо мапінг для placeId
+    @Mapping(target = "ticketPacks", source = "entity.tickets", qualifiedByName = "mapTickets")
+    EventDTO toDTO(Event entity);
+
+    @Named("mapTickets")
+    default List<TicketPackDTO> mapTickets(List<Ticket> tickets) {
         return tickets.stream()
                 .collect(Collectors.groupingBy(
                         Ticket::getCost,
@@ -32,5 +39,11 @@ public interface EventMapping
                 .collect(Collectors.toList());
     }
 
-    EventDTO toDTO(Event entity);
+    @Named("placeFromId")
+    default Place placeFromId(Long placeId) {
+        if (placeId == null) return null;
+        Place place = new Place();
+        place.setId(placeId);
+        return place;
+    }
 }

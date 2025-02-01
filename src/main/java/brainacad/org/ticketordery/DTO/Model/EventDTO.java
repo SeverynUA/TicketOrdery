@@ -15,4 +15,14 @@ public class EventDTO
     private LocalDate eventDate;
     private Long placeId;
     private List<TicketPackDTO> ticketPacks;
+
+    public String getName() {return name;}
+    public LocalDate getEventDate() {return eventDate;}
+    public Long getPlaceId() {return placeId;}
+    public List<TicketPackDTO> getTicketPacks() {return ticketPacks;}
+
+    public void setName(String name) {this.name = name;}
+    public void setEventDate(LocalDate eventDate) {this.eventDate = eventDate;}
+    public void setPlaceId(Long placeId) {this.placeId = placeId;}
+    public void setTicketPacks(List<TicketPackDTO> ticketPacks) {this.ticketPacks = ticketPacks;}
 }

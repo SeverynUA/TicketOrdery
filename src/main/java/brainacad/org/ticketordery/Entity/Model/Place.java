@@ -26,4 +26,9 @@ public class Place
     @NotNull
     @Column(name = "name", nullable = false, length = 100)
     private String name;
+
+    public Long getId() {
+        return id;
+    }
+
 }

@@ -1,5 +1,6 @@
 package brainacad.org.ticketordery.Entity.Model;
 
+import brainacad.org.ticketordery.DTO.Model.TicketPackDTO;
 import jakarta.persistence.*;
 import lombok.*;
 import org.jetbrains.annotations.NotNull;
@@ -35,4 +36,14 @@ public class Event
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "place_id", referencedColumnName = "id", nullable = false)
     private Place place;
+
+    public String getName() {return name;}
+    public LocalDate getEventDate() {return eventDate;}
+    public Place getPlace() {return place;}
+    public List<Ticket> getTickets() {return tickets;}
+
+    public void setName(String name) {this.name = name;}
+    public void setEventDate(LocalDate eventDate) {this.eventDate = eventDate;}
+    public void setPlace(Place place) {this.place = place;}
+    public void setTickets(List<Ticket> tickets) {this.tickets = tickets;}
 }
